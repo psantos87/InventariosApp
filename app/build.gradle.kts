@@ -21,6 +21,21 @@ android {
         
     }
 
+    flavorDimensions += "empresa"
+
+    productFlavors {
+        create("byds") {
+            dimension = "empresa"
+            resValue("string", "app_name", "BYDS Comercial")
+            manifestPlaceholders["appIcon"] = "@mipmap/rb_logo"
+        }
+        create("casajordan") {
+            dimension = "empresa"
+            resValue("string", "app_name", "CasaJordanApp")
+            manifestPlaceholders["appIcon"] = "@mipmap/ic_casajordan"
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -32,6 +47,7 @@ android {
 
     buildFeatures {
         compose = true
+        resValues = true
     }
 }
 

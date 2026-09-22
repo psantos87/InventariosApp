@@ -21,8 +21,5 @@ class Constants {
 
         const val PRINTER_UUID = "00001101-0000-1000-8000-00805f9b34fb"
 
-        // region URLs
-        const val CASA_JORDAN = "InventariosApi.CJ"
-        const val BYNDS = "API.BYDS"
     }
 }
