@@ -12,10 +12,14 @@ android {
 
     defaultConfig {
         applicationId = "com.example.inventariosapp"
-        minSdk = 26
+        minSdk = 29
         targetSdk = 36
         versionCode = 1
+<<<<<<< Updated upstream
         versionName = "1.0"
+=======
+        versionName = "1.QA30"
+>>>>>>> Stashed changes
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -26,6 +30,7 @@ android {
 
     kotlinOptions {
         jvmTarget = "17"
+        freeCompilerArgs = listOf("-XXLanguage:+PropertyParamAnnotationDefaultTargetMode")
     }
 
     buildFeatures {
@@ -45,6 +50,26 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+<<<<<<< Updated upstream
+=======
+    implementation(libs.androidx.compose.ui.text)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.compose.animation.core)
+    implementation(libs.androidx.compose.foundation)
+    implementation(libs.androidx.compose.ui.geometry)
+    implementation(libs.androidx.compose.animation)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.foundation.layout)
+    implementation(libs.androidx.ui.text)
+    implementation(libs.core.ktx)
+    implementation(libs.androidx.ui.test.junit4)
+    implementation(libs.androidx.navigation.testing)
+    implementation(libs.ui)
+    implementation(libs.androidx.glance)
+    implementation(libs.androidx.compose.remote.creation.compose)
+
+    debugImplementation(platform(libs.androidx.compose.bom))
+>>>>>>> Stashed changes
     debugImplementation(libs.androidx.ui.tooling)
 
     // Retrofit

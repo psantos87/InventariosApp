@@ -1,4 +1,8 @@
 <resources>
+<<<<<<< Updated upstream
     <string name="app_name">InventariosApp</string>
+=======
+    <string name="app_name">CasaJordanApp</string>
+>>>>>>> Stashed changes
     <string name="title_activity_main">MainActivity</string>
 </resources>

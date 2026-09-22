@@ -21,8 +21,33 @@ hiltCompose = "1.2.0"
 datastore = "1.1.1"
 
 junit = "4.13.2"
+<<<<<<< Updated upstream
 androidxJunit = "1.2.1"
 espresso = "3.6.1"
+=======
+mockk = "1.14.11"
+androidxJunit = "1.1.5"
+espresso = "3.5.0"
+
+constraintlayout = "2.2.1"
+composeConstraint = "1.1.1"
+uiText = "1.11.0"
+uiToolingPreview = "1.11.1"
+uiTooling = "1.11.1"
+animationCore = "1.11.1"
+foundation = "1.11.1"
+uiGeometry = "1.11.1"
+animation = "1.11.1"
+ui = "1.11.1"
+foundationLayout = "1.11.1"
+uiTextVersion = "1.11.1"
+coreKtxVersion = "1.7.0"
+uiTestJunit4 = "1.11.3"
+navigationTesting = "2.9.8"
+uiVersion = "1.11.1"
+glance = "1.1.1"
+remoteCreationCompose = "1.0.0-alpha17"
+>>>>>>> Stashed changes
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -62,3 +87,25 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "a
 androidx-espresso = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
 retrofit = {group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
 retrofit-converter = {group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit"}
+<<<<<<< Updated upstream
+=======
+
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+androidx-constraintlayout-compose = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "composeConstraint"}
+androidx-compose-ui-text = { group = "androidx.compose.ui", name = "ui-text", version.ref = "uiText" }
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "uiToolingPreview" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiTooling" }
+androidx-compose-animation-core = { group = "androidx.compose.animation", name = "animation-core", version.ref = "animationCore" }
+androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "foundation" }
+androidx-compose-ui-geometry = { group = "androidx.compose.ui", name = "ui-geometry", version.ref = "uiGeometry" }
+androidx-compose-animation = { group = "androidx.compose.animation", name = "animation", version.ref = "animation" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "ui" }
+androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout", version.ref = "foundationLayout" }
+androidx-ui-text = { group = "androidx.compose.ui", name = "ui-text", version.ref = "uiTextVersion" }
+core-ktx = { group = "androidx.test", name = "core-ktx", version.ref = "coreKtxVersion" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "uiTestJunit4" }
+androidx-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "navigationTesting" }
+ui = { group = "androidx.compose.ui", name = "ui", version.ref = "uiVersion" }
+androidx-glance = { group = "androidx.glance", name = "glance", version.ref = "glance" }
+androidx-compose-remote-creation-compose = { group = "androidx.compose.remote", name = "remote-creation-compose", version.ref = "remoteCreationCompose" }
+>>>>>>> Stashed changes

@@ -31,6 +31,32 @@ interface PostSalesDao {
     @Query("DELETE FROM post_sales WHERE id = :id")
     suspend fun deleteSaleById(id: String): Int
 
+<<<<<<<< Updated upstream:app/src/main/java/com/example/inventariosapp/database/dao/PostSalesDao.kt
     @Query("UPDATE post_sales SET estatusVentaId = :newStatus WHERE id = :id")
     suspend fun updateSaleStatusById(id: String, newStatus: Int): Int
 }
+========
+    @Query("DELETE FROM post_sale_products")
+    suspend fun deleteAllProducts(): Int
+
+    @Query("DELETE FROM post_sales")
+    suspend fun deleteAllSales(): Int
+
+    @Query("UPDATE post_sales SET estatusVentaId = :newStatus WHERE id = :id")
+    suspend fun updateSaleStatusById(id: String, newStatus: Int): Int
+
+    @Query("""
+    SELECT COUNT(*)
+    FROM post_sale_products
+""")
+    suspend fun getTotalProducts(): Int
+
+    @Transaction
+    suspend fun deleteAllAndReload(): List<PostSaleWithProducts> {
+        deleteAllProducts()
+        deleteAllSales()
+        return getAllSales()
+    }
+}
+
+>>>>>>>> Stashed changes:app/src/main/java/com/example/inventariosapp/local/dao/PostSalesDao.kt

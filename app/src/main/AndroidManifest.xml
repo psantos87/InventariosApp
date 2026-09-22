@@ -10,9 +10,15 @@
         android:name="com.example.inventariosapp.BaseApplication"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
+<<<<<<< Updated upstream
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+=======
+        android:icon="@mipmap/ic_casajordan"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_casajordan"
+>>>>>>> Stashed changes
         android:supportsRtl="true"
         android:theme="@style/Theme.InventariosApp">
         <activity

@@ -39,6 +39,7 @@ data class PostSalesModel(
     @SerializedName("FechaIngreso") var fechaIngreso: String = "",
     @SerializedName("FechaModifico") var fechaModifico: String? = null,
     @SerializedName("Estatus") var estatus: String? = "",
+    @SerializedName("VersionApp") var versionApp: String? = "",
 ){
 
 }
