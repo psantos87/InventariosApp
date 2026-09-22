@@ -1,37 +1,40 @@
 package com.example.inventariosapp.ui.view.login
 
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.example.inventariosapp.ui.theme.InventariosAppTheme
+import com.example.inventariosapp.navigation.Destinations
+import com.example.inventariosapp.ui.component.Loader
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
-    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-        Greeting(
-            name = "Android",
-            modifier = Modifier.padding(innerPadding)
-        )
-    }
-}
+    val viewModel: LoginViewModel = hiltViewModel()
+    val uiState by viewModel.uiState.collectAsState()
+    val internetUse by viewModel.baseViewModel.internetUses.collectAsState()
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
+    LaunchedEffect(uiState.serverValidateUser) {
+        if (uiState.serverValidateUser) {
+            navController.navigate(route = Destinations.SalesScreen.ruta) {
+                launchSingleTop = true
+                popUpTo(Destinations.LoginScreen.ruta) { inclusive = true }
+            }
+        }
+    }
+
+    LoginView(
+        uiState = uiState,
+        onClickEnter = {
+            if (!uiState.rememberUser) viewModel.clearUser()
+            else viewModel.saveUserLogin()
+            viewModel.validateUserLogin(internetUse)
+        },
+        onUserChange = { viewModel.updateUser(it) },
+        onPasswordChange = { viewModel.updatePassword(it) },
+        onClickRememberPassword = { viewModel.toggleRememberUser() }
     )
-}
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    InventariosAppTheme {
-        Greeting("Android")
-    }
+    Loader(viewModel.baseViewModel.getLoader())
 }

@@ -165,7 +165,7 @@ class NewSaleViewModel @Inject constructor(
             val updatedSaleData = _uiState.value.saleData.copy(
                 clienteId = _uiState.value.newClient?.clienteId ?: _uiState.value.saleData.clienteId,
                 ventaProductos = java.util.ArrayList(products),
-                ventaIdInterno = null,
+                ventaIdInterno = null
             )
             _uiState.update { it.copy(saleData = updatedSaleData) }
             val r = editSaleUseCase(updatedSaleData, _uiState.value.idSale, internetUse)
@@ -411,8 +411,7 @@ class NewSaleViewModel @Inject constructor(
                     usuarioSesionId = usuarioSesionId,
                     ventaProductos = saleProducts as ArrayList<PostSaleProductModel>,
                     tipoConexionId = if (internetUse) 1 else 2,
-                    origenId = 2,
-                    versionApp = cnx.packageManager.getPackageInfo(cnx.packageName, 0).versionName
+                    origenId = 2
                 )
                 val r = postSaleUseCase(listOf(sale), MainActivity.internetBtn.value)
 

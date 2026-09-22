@@ -1,6 +1,6 @@
-# ReadMeIA - Análisis del Proyecto InventariosApp
+# 📋 ReadMeIA - Análisis del Proyecto InventariosApp
 
-## ¿Qué hace este proyecto?
+## 🎯 ¿Qué hace este proyecto?
 
 **InventariosApp** es una aplicación Android para gestión de inventarios, ventas, clientes y pagos diseñada para el negocio "Casa Jordan". Es una app tipo **punto de venta (POS)** con soporte **offline-first**, lo que significa que puede funcionar sin conexión a internet y sincronizar datos cuando se restablece la conexión.
 
@@ -192,7 +192,7 @@ suspend operator fun invoke(internetUse: Boolean): Pair<Data?, String?> {
 
 ---
 
-## Modelos de Datos Principales
+## 📊 Modelos de Datos Principales
 
 ### SalesModel (Venta)
 ```kotlin
@@ -309,23 +309,4 @@ Los tests están en `app/src/test/java/com/example/inventariosapp/`:
 
 ---
 
-## Flujo de Desarrollo (Para IA)
-
-1. **Agregar una nueva funcionalidad**:
-   - Crea el modelo en `/domain/model`.
-   - Agrega el método a `ApiService` (`/api`).
-   - Implementa la lógica del repositorio (`/domain/repository`).
-   - Crea un UseCase (`/domain/use_case`).
-   - Crea la UI (screen, composable y ViewModel).
-
-2. **Modifica una pantalla existente**:
-   - Busca en `/ui/view/`.
-   - El estado se maneja en `ViewModel.uiState: StateFlow<UiState>`.
-   - Las llamadas a UseCase se hacen dentro de `viewModelScope.launch`.
-
-3. **Cambia la base de datos local**:
-   - Actualiza las entidades (`/local/entity`).
-   - Ajusta el DAO correspondiente (`/local/dao`).
-   - Incrementa la versión en `CompanyDatabase`.
-
-Basado en código del proyecto 09/08/2026*
+*Última actualización del análisis: Basado en código actual del proyecto 09/08/2026*

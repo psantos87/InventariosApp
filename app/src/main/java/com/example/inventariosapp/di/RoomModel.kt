@@ -2,7 +2,7 @@ package com.example.inventariosapp.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.inventariosapp.database.CompanyDatabase
+import com.example.inventariosapp.local.CompanyDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,4 +45,8 @@ object RoomModel {
     @Singleton
     @Provides
     fun provideInventoryDao(db: CompanyDatabase) = db.inventoryDao()
+
+    @Singleton
+    @Provides
+    fun provideNewPayDao(db: CompanyDatabase) = db.newPayDao()
 }

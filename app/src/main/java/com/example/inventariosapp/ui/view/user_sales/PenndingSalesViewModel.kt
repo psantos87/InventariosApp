@@ -18,7 +18,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -90,20 +89,12 @@ class PenndingSalesViewModel @Inject constructor(
                     val internetUse = Helpers.isInternetAvailable(cnx)
                     if (internetUse){
                         val r = postSaleUseCase(userSales, internetUse)
-                        if (r.first != null && viewModelScope.isActive) {
-                            viewModelScope.launch {
-                                try {
-                                    val remainingSales = postSalesDao.deleteAllAndReload()
-                                    updatePenndingSales(remainingSales as ArrayList<PostSaleWithProducts>)
-                                    MainActivity.mainDialogMsg.value = "Ventas guardadas"
-                                    MainActivity.mainDialog.value = true
-                                } catch (e: Exception) {
-                                    MainActivity.mainDialogMsg.value = "Error sincronizando datos locales"
-                                    MainActivity.mainDialog.value = true
-                                    Log.e("PenndingSalesViewModel", "Error en transacción de sincronización", e)
-                                    getPenndingSales()
-                                }
-                            }
+                        if (r.first != null){
+                            postSalesDao.deleteAllProducts()
+                            postSalesDao.deleteAllSales()
+                            getPenndingSales()
+                            MainActivity.mainDialogMsg.value = "Ventas guardadas"
+                            MainActivity.mainDialog.value = true
                         }
                         else {
                             MainActivity.mainDialogMsg.value = "Error al procesar la venta"

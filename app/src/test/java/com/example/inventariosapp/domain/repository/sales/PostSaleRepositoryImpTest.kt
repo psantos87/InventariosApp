@@ -32,7 +32,7 @@ class PostSaleRepositoryImpTest {
     fun setUp() {
         // Mockear isSessionValid como suspend function
         coEvery { sessionManager.isSessionValid() } returns true
-        /*
+
         postSaleRepositoryImp = PostSaleRepositoryImp(
             sessionManager,
             apiService,
@@ -40,10 +40,7 @@ class PostSaleRepositoryImpTest {
             mockk()
         )
     }
-
- */
-
-    }
+    
     @After
     fun tearDown() {
         db.close()

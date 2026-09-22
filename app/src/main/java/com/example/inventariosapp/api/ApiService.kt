@@ -1,15 +1,17 @@
 package com.example.inventariosapp.api
 
-import com.example.inventariosapp.model.client.ClientResponseModel
-import com.example.inventariosapp.model.login.LoginResponseModel
-import com.example.inventariosapp.model.payment.PayModel
-import com.example.inventariosapp.model.product.InventarioRseponeModel
-import com.example.inventariosapp.model.product.ProductIdResponseModel
-import com.example.inventariosapp.model.product.ProductsResponseModel
-import com.example.inventariosapp.model.sales.GetPaymentResponseModel
-import com.example.inventariosapp.model.sales.GetSalesByIdResponse
-import com.example.inventariosapp.model.sales.PostSalesModel
-import com.example.inventariosapp.model.sales.SalesModel
+import com.example.appgeneric.model.payment.NewPayModel
+import com.example.inventariosapp.domain.model.client.ClientResponseModel
+import com.example.inventariosapp.domain.model.login.LoginResponseModel
+import com.example.inventariosapp.domain.model.payment.PayModel
+import com.example.inventariosapp.domain.model.product.InventarioRseponeModel
+import com.example.inventariosapp.domain.model.product.ProductIdResponseModel
+import com.example.inventariosapp.domain.model.product.ProductsResponseModel
+import com.example.inventariosapp.domain.model.sales.GetPaymentResponseModel
+import com.example.inventariosapp.domain.model.sales.GetSalesByIdResponse
+import com.example.inventariosapp.domain.model.sales.PostSalesModel
+import com.example.inventariosapp.domain.model.sales.SalesModel
+import com.example.inventariosapp.util.Constants
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -20,42 +22,25 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
-
     // region login
-<<<<<<< Updated upstream
-    @GET("InventariosApi.QA/Api/usuario/{user},{password}")
-=======
-    @GET("${Constants.CASA_JORDAN}/Api/usuario/{user},{password}")
->>>>>>> Stashed changes
+    @GET("${Constants.BYNDS}/Api/usuario/{user},{password}")
     suspend fun validateUser(
         @Path("user") user: String,
         @Path("password") password: String
     ): Response<LoginResponseModel>
     // endregion
     // region productos
-<<<<<<< Updated upstream
-    @GET("InventariosApi.QA/Api/Producto")
-=======
-    @GET("${Constants.CASA_JORDAN}/Api/Producto")
->>>>>>> Stashed changes
+    @GET("${Constants.BYNDS}/Api/Producto")
     suspend fun getProducts(
         @Query("EsActivo") esActivo: Boolean = true
     ): Response<List<ProductsResponseModel>>
 
-<<<<<<< Updated upstream
-    @GET("InventariosApi.QA/Api/Producto/GetByIdData")
-=======
-    @GET("${Constants.CASA_JORDAN}/Api/Producto/GetByIdData")
->>>>>>> Stashed changes
+    @GET("${Constants.BYNDS}/Api/Producto/GetByIdData")
     suspend fun getProductId(
         @Query("productoId") productId: Int
     ): Response<ProductIdResponseModel>
 
-<<<<<<< Updated upstream
-    @GET("InventariosApi.QA/Api/Inventario")
-=======
-    @GET("${Constants.CASA_JORDAN}/Api/Inventario")
->>>>>>> Stashed changes
+    @GET("${Constants.BYNDS}/Api/Inventario")
     suspend fun getInventario(
         @Query("EsActivo") esActivo: Boolean = true
     ): Response<List<InventarioRseponeModel>>
@@ -63,11 +48,7 @@ interface ApiService {
 
 
     // region clientes
-<<<<<<< Updated upstream
-    @GET("InventariosApi.QA/Api/Cliente")
-=======
-    @GET("${Constants.CASA_JORDAN}/Api/Cliente")
->>>>>>> Stashed changes
+    @GET("${Constants.BYNDS}/Api/Cliente")
     suspend fun getClient(
         @Query("EsActivo") esActivo: Boolean = true
     ): Response<List<ClientResponseModel>>
@@ -75,54 +56,28 @@ interface ApiService {
 
 
     // region payment
-<<<<<<< Updated upstream
-    @GET("InventariosApi.QA/Api/TipoPago")
-=======
-    @GET("${Constants.CASA_JORDAN}/Api/TipoPago")
->>>>>>> Stashed changes
+    @GET("${Constants.BYNDS}/Api/TipoPago")
     suspend fun getPaymentMethod(
         @Query("EsActivo") esActivo: Boolean = true
     ): Response<List<GetPaymentResponseModel>>
 
-<<<<<<< Updated upstream
-    @GET("InventariosApi.QA/Api/VentaPago/{pagoId}")
-=======
-    @GET("${Constants.CASA_JORDAN}/Api/VentaPago/{pagoId}")
->>>>>>> Stashed changes
+    @GET("${Constants.BYNDS}/Api/VentaPago/{pagoId}")
     suspend fun getPaymentById(
         @Path("pagoId") pagoId: String
     ): Response<GetPaymentResponseModel>
 
-<<<<<<< Updated upstream
-    @GET("InventariosApi.QA/Api/VentaPago")
-=======
-    @GET("${Constants.CASA_JORDAN}/Api/VentaPago")
->>>>>>> Stashed changes
+    @GET("${Constants.BYNDS}/Api/VentaPago")
     suspend fun getPayment(
         @Query("VentaID") ventaID: String,
         @Query("EsActivo") esActivo: Boolean = true
     ): Response<List<PayModel>>
 
-<<<<<<< Updated upstream
-    @POST("InventariosApi.QA/Api/VentaPago")
-=======
-    @POST("${Constants.CASA_JORDAN}/Api/VentaPago")
->>>>>>> Stashed changes
+    @POST("${Constants.BYNDS}/Api/VentaPago")
     suspend fun setPayment(
-        @Query("VentaID") ventaID: String,
-        @Query("montoPago") montoPago: String,
-        @Query("fecha") fecha: String,
-        @Query("observaciones") observaciones: String,
-        @Query("origenId") origenId: Int,
-        @Query("tipoConexionId") tipoConexionId: Int,
-        @Query("usuarioSesionId") usuarioSesionId: Int
+        @Body payments: List<NewPayModel>
     ): Response<Unit>
 
-<<<<<<< Updated upstream
-    @DELETE("InventariosApi.QA/Api/VentaPago/{pagoId}")
-=======
-    @DELETE("${Constants.CASA_JORDAN}/Api/VentaPago/{pagoId}")
->>>>>>> Stashed changes
+    @DELETE("${Constants.BYNDS}/Api/VentaPago/{pagoId}")
     suspend fun deletePayment(
         @Path("pagoId") pagoId: Int
     ): Response<Unit>
@@ -130,38 +85,20 @@ interface ApiService {
 
 
     // region ventas
-<<<<<<< Updated upstream
-    @POST("InventariosApi.QA/Api/Venta")
-=======
-    @POST("${Constants.CASA_JORDAN}/Api/Venta")
->>>>>>> Stashed changes
+    @POST("${Constants.BYNDS}/Api/Venta")
     suspend fun postSale(
         @Body sales: List<PostSalesModel>
     ): Response<Unit>
 
-<<<<<<< Updated upstream
-    @GET("InventariosApi.QA/Api/Venta/{saleId}")
-=======
-    @GET("${Constants.CASA_JORDAN}/Api/Venta/{saleId}")
->>>>>>> Stashed changes
+    @GET("${Constants.BYNDS}/Api/Venta/{saleId}")
     suspend fun getSalesById(
         @Path("saleId") saleId: String
     ): Response<GetSalesByIdResponse>
 
-<<<<<<< Updated upstream
-    @PUT("InventariosApi.QA/Api/Venta/{ventaId}")
-    suspend fun editSale(
-        @Path("ventaId") ventaId: String,
-        @Body venta: GetSalesByIdResponse
-    ): Response<Unit>
-
-    @GET("InventariosApi.QA/Api/Venta")
-=======
-    @PUT("${Constants.CASA_JORDAN}/Api/Venta/{ventaId}")
+    @PUT("${Constants.BYNDS}/Api/Venta/{ventaId}")
     suspend fun editSale(@Body venta: GetSalesByIdResponse, @Path("ventaId") ventaId: String) : Response<Unit>
 
-    @GET("${Constants.CASA_JORDAN}/Api/Venta")
->>>>>>> Stashed changes
+    @GET("${Constants.BYNDS}/Api/Venta")
     suspend fun getSalesInProcess(
         @Query("esActivo") esActivo: Boolean = true,
         @Query("EstatusVentaIds") statusSales: String,
@@ -169,23 +106,15 @@ interface ApiService {
         @Query("fechaFin") endDate: String
     ): Response<List<SalesModel>>
 
-<<<<<<< Updated upstream
-    @GET("InventariosApi.QA/Api/Venta")
-=======
-    @GET("${Constants.CASA_JORDAN}/Api/Venta")
->>>>>>> Stashed changes
+    @GET("${Constants.BYNDS}/Api/Venta")
     suspend fun getPendingSales(
         @Query("esActivo") esActivo: Boolean = true,
-        @Query("EstatusVentaIds") estatusVentaIds: String = "1,2",
+        @Query("estatusVentaIds") estatusVentaIds: String = "1,2",
         @Query("fechaInicio") fechaInicio: String,
         @Query("fechaFin") fechaFin: String
     ): Response<List<SalesModel>>
 
-<<<<<<< Updated upstream
-    @GET("InventariosApi.QA/Api/VentaPago")
-=======
-    @GET("${Constants.CASA_JORDAN}/Api/VentaPago")
->>>>>>> Stashed changes
+    @GET("${Constants.BYNDS}/Api/VentaPago")
     suspend fun getSalePayments(
         @Query("VentaId") pagoId: String,
         @Query("EsActivo") esActivo: Boolean = true

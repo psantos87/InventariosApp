@@ -210,12 +210,24 @@ Utilidades del sistema y constantes.
 | `compileSdk` | 36 |
 | `minSdk` | 26 (Android 8.0) |
 | `targetSdk` | 36 |
+| Versión | `1.QA22` |
 
 **Dependencias clave en `build.gradle.kts`:**
 - Jetpack Compose BOM (versión dinámica)
 - Hilt & Navigation Compose
 - Room Runtime + KSP (compilación rápida)
 - Retrofit, OkHttp Logging Interceptor
+
+---
+
+## Buenas Prácticas Observadas
+
+- ✅ **UI Descriptiva:** Uso intensivo de Jetpack Compose.
+- ✅ **Separación clara:** Capas `domain`, `data` (local), `data` (remote).
+- ✅ **Gestión de estado:** Uso de `StateFlow` y `MutableState`.
+- ✅ **Reusabilidad:** Componentes UI en carpetas `component/`.
+- ✅ **Offline-first:** El repositorio siempre tiene un fallback local.
+- ✅ **Hilt para DI:** Inyección automática de dependencias sin código boilerplate.
 
 ---
 

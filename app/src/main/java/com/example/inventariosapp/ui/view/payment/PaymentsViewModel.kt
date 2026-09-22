@@ -73,7 +73,7 @@ data class PaymentsUiState(
     val payTotalPayment: String = "",
     val payObservation: String = "",
     val dialogDeposit: Boolean = false,
-    val showDeposit: Boolean = true,
+    val showDeposit: Boolean = false,
     val payments: ArrayList<PayModel> = arrayListOf(),
     val btnDeposit: Boolean = true,
     val dialogBT: Boolean = false,
@@ -334,7 +334,7 @@ class PaymentsViewModel @Inject constructor(
 
                 val output = socket!!.outputStream
                 repeat(2) {
-                    printBitmap(context, output, R.drawable.casajordan)
+                    printBitmap(context, output, R.drawable.rb_letters)
                     val recivo = ("--------------------------------\n" +
                             "        Recibo de impresion\n" +
                             "Cliente: ${_uiState.value.select?.nombreCliente!!}\n" +
@@ -414,7 +414,7 @@ class PaymentsViewModel @Inject constructor(
                 showToastOnMain(context, "Conectado a ${device.name}")
 
                 val output = socket!!.outputStream
-                printBitmap(context, output, R.drawable.casajordan)
+                printBitmap(context, output, R.drawable.rb_letters)
                 val recivo = ("--------------------------------\n" +
                         "        Recibo de impresion\n" +
                         "Cliente: ${_uiState.value.select?.nombreCliente!!}\n" +

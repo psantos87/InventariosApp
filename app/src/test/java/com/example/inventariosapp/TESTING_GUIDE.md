@@ -103,5 +103,64 @@ androidTestImplementation(libs.espresso.core)
 - Validar interacciones básicas (clicks, texto)
 - Usar `@HiltTestApplication` para inyección de dependencias
 
+---
+
+## Correcciones Recientes (2024)
+
+### GetInventarioProductoRepositoryImpTest.kt ✅
+**Problema**: Error con `Response.Builder()` y tipo Response (okhttp3 vs retrofit2)
+- **Solución**: Cambiar a `Response.success(mockResponse)` y `Response.error(500, "".toResponseBody())`
+
+### GetSalesByIdRepositoryImpTest.kt ✅  
+**Problema**: Igual que arriba, + error en test con @Test(expected = IOException::class)
+- **Solución**: 
+  - Cambiar a `Response.success()` y `Response.error()`
+  - Mover `runBlocking` dentro del método para que la firma sea compatible
+
+### GetInventarioUseCaseTest.kt ✅
+**Problema**: Error de tipo en respuesta con error (String vs ErrorModel)
+- **Solución**: Usar `ErrorModel(MsgErrorModel(rawValue = errorMsg))`
+
+### NewSaleScreenTest.kt ✅
+**Problema**: Referencia a clase inexistente `AndroidComposeTestCase`
+- **Solución**: 
+  - Cambiar a `createAndroidComposeRule<MainActivity>()`
+  - Usar `composeTestRule.activity` en lugar de `ruleActivity`
+
+---
+
+## Casos de Prueba No Automatizables
+
+### ❌ NO AUTOMATIZABLE - Dialogos del sistema
+```kotlin
+// Estas llamadas requieren interacción humana o mocks complejos:
+MainActivity.mainDialogMsg.value = "..."
+MainActivity.mainDialog.value = true
+```
+
+### ⚠️ DIFICIL - Validaciones de UI complejas
+- Interacciones múltiples en secuencia
+- Animaciones de transición
+- Validación visual precisa
+
+### ✅ AUTOMATIZABLE - Lógica de negocio
+- Todos los métodos del ViewModel que no interactúan directamente con UI
+- Repositorios que manejan lógica de cache
+- Use cases que delegan a repositorios
+
+## Recomendaciones
+
+1. **Comenzar con pruebas unitarias simples**: Ejecutar las pruebas de use cases primero
+2. **Agregar dependencias de mocking**: Agregar MockK para poder ejecutar todas las pruebas
+3. **Pruebas de integración**: Usar base de datos en memoria para probar repositorios completos
+4. **Pruebas UI parciales**: Probar componentes Compose individuales sin depender del ViewModel completo
+
+## Conclusión
+
+Las pruebas para `NewSaleViewModel` y `NewSaleScreen` son **parcialmente automatizables**:
+
+- ✅ **100% automatizable**: Lógica de negocio (use cases, repositorios)
+- ⚠️ **Parcialmente automatizable**: ViewModel (con mocks adecuados)
+- ❌ **No automatizable**: Diálogos del sistema y efectos colaterales externos
 
 El código actual tiene buenas prácticas de arquitectura (MVVM + Clean Architecture) que facilitan la testing. Las pruebas unitarias pueden ejecutarse inmediatamente una vez se agreguen las dependencias de mocking (MockK).

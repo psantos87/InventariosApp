@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -12,15 +13,12 @@ android {
 
     defaultConfig {
         applicationId = "com.example.inventariosapp"
-        minSdk = 29
+        minSdk = 26
         targetSdk = 36
         versionCode = 1
-<<<<<<< Updated upstream
-        versionName = "1.0"
-=======
-        versionName = "1.QA30"
->>>>>>> Stashed changes
+        versionName = "1.QA02"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        
     }
 
     compileOptions {
@@ -30,7 +28,6 @@ android {
 
     kotlinOptions {
         jvmTarget = "17"
-        freeCompilerArgs = listOf("-XXLanguage:+PropertyParamAnnotationDefaultTargetMode")
     }
 
     buildFeatures {
@@ -50,8 +47,6 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-<<<<<<< Updated upstream
-=======
     implementation(libs.androidx.compose.ui.text)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.animation.core)
@@ -64,13 +59,10 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.androidx.ui.test.junit4)
     implementation(libs.androidx.navigation.testing)
-    implementation(libs.ui)
-    implementation(libs.androidx.glance)
-    implementation(libs.androidx.compose.remote.creation.compose)
 
     debugImplementation(platform(libs.androidx.compose.bom))
->>>>>>> Stashed changes
     debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
 
     // Retrofit
     implementation(libs.retrofit)
@@ -83,6 +75,7 @@ dependencies {
     // Room (KSP)
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
+    debugImplementation(libs.androidx.compose.ui.tooling)
     ksp(libs.room.compiler)
 
     // Hilt (KSP)
@@ -92,4 +85,21 @@ dependencies {
 
     // DataStore
     implementation(libs.androidx.datastore)
+
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.constraintlayout.compose)
+
+    // Testing
+    testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+
+    // Arch Core Testing para InstantTaskExecutorRule
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+
+    implementation("androidx.compose.material:material-icons-extended:1.7.8")
 }

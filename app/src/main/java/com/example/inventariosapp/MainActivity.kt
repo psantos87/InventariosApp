@@ -1,29 +1,37 @@
 package com.example.inventariosapp
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
+import com.example.appgeneric.ui.component.TextCmp
 import com.example.inventariosapp.navigation.SetupNavGraph
+import com.example.inventariosapp.ui.component.ButtonCmp
+import com.example.inventariosapp.ui.dialog.BasicDialogCmp
 import com.example.inventariosapp.ui.theme.InventariosAppTheme
+import com.example.inventariosapp.ui.theme.PADDING_16
+import com.example.inventariosapp.ui.theme.UI_Backround_Btn_Accept
 import com.example.inventariosapp.ui.view.menu.LateralMenuCmp
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -37,30 +45,40 @@ class MainActivity : ComponentActivity() {
         var lastUpdateClient: MutableState<String> = mutableStateOf("")
         var lastUpdateProducts: MutableState<String> = mutableStateOf("")
         var lastUpdateSells: MutableState<String> = mutableStateOf("")
-        var lastUpdatePayments: MutableState<String> = mutableStateOf("")
         var lastUpdateInventory: MutableState<String> = mutableStateOf("")
         val internetBtn: MutableState<Boolean> = mutableStateOf(true)
+        //var internetBtn = MutableStateFlow(true)
         // endregion
         // region Vars Main Dialog
         val mainDialog = mutableStateOf(false)
         var mainDialogTitle = mutableStateOf("Aviso")
         var mainDialogMsg = mutableStateOf("")
-        var mainDialogColor = Color.Red
+        var mainDialogColor = mutableStateOf(Color.Red)
         // endregion
+        // region Always Same Date
+        val startDate = mutableStateOf("")
+        val endDate = mutableStateOf("")
+        // endregion
+        var currentRoute: MutableState<String?> = mutableStateOf(null)
+        val versionID = mutableStateOf(0L)
     }
 
+    @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         enableEdgeToEdge()
         setContent {
             drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+            val pInfo = packageManager.getPackageInfo(packageName, 0)
+            versionID.value = pInfo.longVersionCode
             InventariosAppTheme() {
                 val navController = rememberNavController()
                 scope = rememberCoroutineScope()
-                /*
+                SetupNavGraph(navController)
                 if (mainDialog.value){
                     BasicDialogCmp(
-                        color = mainDialogColor,
+                        color = mainDialogColor.value,
                         content = {
                             Column(
                                 modifier = Modifier
@@ -76,7 +94,9 @@ class MainActivity : ComponentActivity() {
                                 TextCmp(
                                     text = mainDialogMsg.value,
                                     textAlign = TextAlign.Center,
-                                    modifier = Modifier.padding(bottom = PADDING_16)
+                                    modifier = Modifier.padding(bottom = PADDING_16),
+                                    maxLine = 10,
+                                    color = Color.Black
                                 )
 
                                 ButtonCmp(
@@ -85,7 +105,7 @@ class MainActivity : ComponentActivity() {
                                         .fillMaxWidth()
                                         .height(48.dp),
                                     shape = RoundedCornerShape(50),
-                                    backGroundColor = Color.Green,
+                                    backGroundColor = UI_Backround_Btn_Accept,
                                     textSize = 14.sp,
                                     text = "Aceptar"
                                 )
@@ -94,7 +114,7 @@ class MainActivity : ComponentActivity() {
                         onDismiss = { mainDialog.value = false }
                     )
                 }
-                 */
+
                 LateralMenuCmp(
                     navController = navController,
                     drawerState = drawerState,

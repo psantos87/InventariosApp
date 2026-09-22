@@ -8,7 +8,7 @@ appcompat = "1.7.0"
 lifecycle = "2.8.4"
 
 activityCompose = "1.9.3"
-composeBom = "2024.10.00"
+composeBom = "2025.01.00"
 
 navigation = "2.8.3"
 
@@ -21,10 +21,6 @@ hiltCompose = "1.2.0"
 datastore = "1.1.1"
 
 junit = "4.13.2"
-<<<<<<< Updated upstream
-androidxJunit = "1.2.1"
-espresso = "3.6.1"
-=======
 mockk = "1.14.11"
 androidxJunit = "1.1.5"
 espresso = "3.5.0"
@@ -44,10 +40,6 @@ uiTextVersion = "1.11.1"
 coreKtxVersion = "1.7.0"
 uiTestJunit4 = "1.11.3"
 navigationTesting = "2.9.8"
-uiVersion = "1.11.1"
-glance = "1.1.1"
-remoteCreationCompose = "1.0.0-alpha17"
->>>>>>> Stashed changes
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -69,6 +61,8 @@ androidx-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 
@@ -83,12 +77,11 @@ hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-com
 androidx-datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
 
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxJunit" }
 androidx-espresso = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
 retrofit = {group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
 retrofit-converter = {group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit"}
-<<<<<<< Updated upstream
-=======
 
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-constraintlayout-compose = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "composeConstraint"}
@@ -105,7 +98,3 @@ androidx-ui-text = { group = "androidx.compose.ui", name = "ui-text", version.re
 core-ktx = { group = "androidx.test", name = "core-ktx", version.ref = "coreKtxVersion" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "uiTestJunit4" }
 androidx-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "navigationTesting" }
-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "uiVersion" }
-androidx-glance = { group = "androidx.glance", name = "glance", version.ref = "glance" }
-androidx-compose-remote-creation-compose = { group = "androidx.compose.remote", name = "remote-creation-compose", version.ref = "remoteCreationCompose" }
->>>>>>> Stashed changes
